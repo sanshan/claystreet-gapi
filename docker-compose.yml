@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  claystreet-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: node:current-alpine
+    container_name: claystreet-google-api
+    restart: unless-stopped
+    env_file: environments/environments.env
+    ports:
+      - "4000:4000"
+    volumes:
+      - .:/home/node/app
+      - ./node_modules:/home/node/app/node_modules
+    command: npm run dev
